@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#F4F7F9">
+
+<title>Hebrew Master by Noah</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════
+   Mobile & PC Premium UI - COMPACT SCROLL-FREE
+════════════════════════════════════════════ */
+:root {
+  --bg: #F4F7F9; --surface: #FFFFFF; --primary: #2563EB; --secondary: #10B981;
+  --error: #EF4444; --warning: #F59E0B; --ink: #1E293B; --muted: #94A3B8; --border: #E2E8F0;
+  --shadow-sm: 0 4px 12px rgba(30, 41, 59, 0.05); --shadow-md: 0 8px 24px rgba(30, 41, 59, 0.08);
+  --shadow-lg: 0 16px 32px rgba(30, 41, 59, 0.12); --radius: 20px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Nunito', sans-serif; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+html { background: var(--bg); }
+body { color: var(--ink); height: 100vh; height: 100dvh; display: flex; flex-direction: column; align-items: center; overflow: hidden; user-select: none; }
+
+/* ── LANDING PAGE ── */
+#landing-page { position: fixed; inset: 0; background: var(--bg); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; transition: opacity 0.4s ease, visibility 0.4s; overflow-y: auto; }
+.landing-card { background: var(--surface); padding: 30px 24px 24px; border-radius: 32px; box-shadow: var(--shadow-lg); max-width: 400px; width: 100%; margin: auto;}
+.l-icon { font-size: 3.5rem; margin-bottom: 8px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.l-title { font-size: 1.8rem; font-weight: 900; color: var(--ink); line-height: 1.2; margin-bottom: 4px; }
+.l-title span { color: var(--primary); font-family: 'Rubik', sans-serif;}
+.l-desc { font-size: 0.95rem; color: var(--muted); font-weight: 800; margin-bottom: 12px; line-height: 1.4; }
+.l-author { color: var(--primary); font-size: 0.85rem; font-weight: 900; background: #DBEAFE; padding: 4px 12px; border-radius: 50px; display: inline-block; margin-top: 6px; }
+
+.dev-note { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 16px; padding: 10px; margin-bottom: 16px; font-size: 0.8rem; color: #1D4ED8; text-align: left; font-weight: 700; line-height: 1.4; box-shadow: var(--shadow-sm);}
+.dev-note span { font-weight: 900; display: block; margin-bottom: 2px; }
+
+.l-stats { background: #F8FAFC; border-radius: 20px; padding: 12px; margin-bottom: 20px; border: 2px solid var(--border); }
+.l-stat-val { font-size: 2.2rem; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 4px;}
+.l-stat-lbl { font-size: 0.75rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.l-level { background: #EDE9FE; color: #6D28D9; padding: 4px 14px; border-radius: 50px; font-weight: 900; font-size: 0.9rem; display: inline-block; }
+
+.btn-start { width: 100%; padding: 16px; border: none; border-radius: 20px; font-size: 1.1rem; font-weight: 900; color: white; background: var(--secondary); cursor: pointer; box-shadow: 0 6px 0 #047857; transition: transform 0.1s, box-shadow 0.1s; margin-bottom: 10px; }
+.btn-start:active { transform: translateY(6px); box-shadow: 0 0 0 transparent; }
+.btn-reset { background: transparent; border: none; color: var(--warning); font-weight: 800; font-size: 0.85rem; cursor: pointer; padding: 8px; width: 100%; }
+
+/* ── HEADER & TABS ── */
+#main-app { display: none; width: 100%; height: 100%; max-width: 600px; flex-direction: column; opacity: 0; animation: fadeInApp 0.5s ease forwards; }
+@keyframes fadeInApp { to { opacity: 1; } }
+header { width: 100%; padding: 10px 16px 6px; background: var(--surface); z-index: 100; box-shadow: var(--shadow-sm); flex-shrink: 0; }
+.logo { font-size: 1.1rem; font-weight: 900; color: var(--ink); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1;}
+.logo span { color: var(--primary); font-family: 'Rubik', sans-serif;}
+.nav-tabs { display: flex; background: var(--bg); border-radius: 12px; padding: 4px; margin-top: 8px; }
+.nav-btn { flex: 1; padding: 6px 0; border: none; border-radius: 10px; background: transparent; color: var(--muted); font-size: 0.9rem; font-weight: 800; cursor: pointer; transition: 0.2s; }
+.nav-btn.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
+.panel { display: none; width: 100%; flex: 1; flex-direction: column; overflow: hidden; animation: fadeIn 0.3s ease; }
+.panel.active { display: flex; }
+
+/* SCROLLING CATEGORIES */
+.cat-scroll { display: flex; overflow-x: auto; gap: 8px; padding: 10px 16px; flex-shrink: 0; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; background: var(--bg); }
+.cat-scroll:active { cursor: grabbing; }
+.cat-scroll::-webkit-scrollbar { display: none; }
+.cat-pill { flex-shrink: 0; padding: 6px 14px; border-radius: 50px; border: 2px solid transparent; background: var(--surface); color: var(--muted); font-size: 0.9rem; font-weight: 800; cursor: pointer; box-shadow: var(--shadow-sm); transition: 0.1s; user-select: none;}
+.cat-pill.active { background: var(--ink); color: white; }
+
+/* ── GAME PLAY AREA ── */
+#play-area { flex: 1; display: flex; flex-direction: column; padding: 0 16px 8px; justify-content: flex-start; }
+.word-card { background: var(--surface); border-radius: var(--radius); padding: 12px; text-align: center; margin-bottom: 8px; box-shadow: var(--shadow-md); position: relative; border-top: 5px solid var(--primary); flex-shrink: 0; }
+.word-prog { position: absolute; top: 10px; right: 10px; font-size: 0.75rem; font-weight: 800; color: var(--muted); background: #F1F5F9; padding: 2px 8px; border-radius: 50px;}
+
+/* 👇 NEW: TARGET HEBREW WORD DISPLAY */
+.word-target-hb { font-size: 2.5rem; font-family: 'Rubik', sans-serif; font-weight: 900; color: var(--ink); line-height: 1.1; margin-bottom: 4px; margin-top: 10px; direction: rtl; }
+.word-eng { font-size: 1.1rem; font-weight: 800; color: var(--muted); margin-bottom: 2px; }
+.word-hint { font-size: 1.1rem; color: var(--primary); font-weight: 900; margin-bottom: 8px; }
+
+/* SPELLING NOTE */
+.hb-note { display: inline-block; background: #FEF3C7; color: #D97706; font-size: 0.8rem; font-weight: 800; padding: 4px 10px; border-radius: 10px; margin-bottom: 10px; text-align: left; line-height: 1.3; max-width: 95%; border: 1px solid #FDE68A; }
+
+.listen-btn { display: inline-flex; align-items: center; gap: 6px; background: #DBEAFE; color: #1D4ED8; border: none; font-size: 0.85rem; font-weight: 800; padding: 4px 12px; border-radius: 50px; cursor: pointer; margin-bottom: 8px; transition: transform 0.1s;}
+.listen-btn:active { transform: scale(0.92); background: #BFDBFE;}
+
+/* ── SLOTS (HEBREW RTL - NOW FORCED ON ONE LINE) ── */
+.slots { display: flex; justify-content: center; gap: 4px; flex-wrap: nowrap; direction: rtl; } 
+.slot { flex: 1; min-width: 0; max-width: 80px; background: var(--bg); border: 2px solid transparent; border-radius: 12px; padding: 8px 2px 6px; text-align: center; transition: 0.2s; position: relative; cursor: pointer; direction: ltr; }
+.slot.active { background: #DBEAFE; border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+.slot.done { background: #ECFDF5; border-color: var(--secondary); }
+.slot.error { animation: shake 0.4s ease; background: #FEF2F2; border-color: var(--error); }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+
+.s-tr { font-size: 0.9rem; font-weight: 900; color: #64748B; margin-bottom: 4px; direction: ltr; unicode-bidi: isolate; }
+.slot.active .s-tr { color: var(--primary); }
+.slot.done .s-tr { color: var(--secondary); }
+.s-hb { font-size: 1.8rem; font-family: 'Rubik', sans-serif; font-weight: 700; color: var(--ink); min-height: 2.2rem; direction: rtl; display: flex; justify-content: center;}
+.s-hb span { color: var(--muted); opacity: 0.3; letter-spacing: 2px;} 
+
+/* ── TILE BANK ── */
+#bank-container { display: flex; flex-direction: column; flex-shrink: 0; margin-bottom: 4px; }
+.bank-head { display: flex; justify-content: space-between; margin-bottom: 6px; padding: 0 4px; align-items: center;}
+.bank-head span { font-size: 0.85rem; font-weight: 800; color: var(--muted); }
+.hint-btn { background: #FEF3C7; border: none; color: #D97706; font-weight: 800; font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; cursor: pointer;}
+.bank { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; background: var(--surface); padding: 10px; border-radius: var(--radius); box-shadow: var(--shadow-md); direction: rtl;}
+.tile { background: var(--bg); border-radius: 10px; padding: 8px 0 6px; text-align: center; cursor: pointer; border-bottom: 4px solid var(--border); transition: 0.1s; user-select: none;}
+.tile:active:not(.used) { transform: translateY(4px); border-bottom-width: 0; margin-top: 4px; }
+.t-hb { font-size: 1.6rem; font-family: 'Rubik', sans-serif; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+.t-tr { font-size: 0.8rem; font-weight: 800; color: var(--muted); }
+.tile.used { opacity: 0.15; pointer-events: none; border-bottom-width: 0; transform: translateY(4px); margin-top: 4px; }
+
+/* ── ACTIONS ── */
+.btn-next { width: 100%; padding: 14px; border: none; border-radius: 16px; font-size: 1.1rem; font-weight: 900; color: white; background: var(--secondary); cursor: pointer; box-shadow: 0 6px 0 #047857; display: none; margin-top: 8px; flex-shrink: 0; animation: fadeIn 0.3s ease;}
+.btn-next:active { transform: translateY(6px); box-shadow: 0 0 0 transparent; }
+.finish { text-align: center; padding: 40px 20px; display: none; flex: 1; }
+.finish h1 { font-size: 2rem; color: var(--ink); margin: 16px 0; font-weight: 900;}
+
+/* ── REVIEW SECTION ── */
+.rev-filter-bar { display: flex; gap: 8px; padding: 10px 16px; background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.04); z-index: 10; flex-shrink: 0;}
+.r-tab { flex: 1; padding: 8px 0; border: none; border-radius: 10px; font-size: 0.8rem; font-weight: 900; cursor: pointer; transition: 0.2s; background: var(--bg); color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 4px;}
+.r-tab span { font-size: 1.1rem; }
+.r-tab.active-mastered { background: #D1FAE5; color: #065F46; }
+.r-tab.active-struggled { background: #FEE2E2; color: #991B1B; }
+.r-tab.active-unseen { background: #F1F5F9; color: var(--ink); }
+
+#rev-list-container { flex: 1; overflow-y: auto; padding: 12px; background: var(--bg); }
+.r-list { display: flex; flex-direction: column; gap: 10px; }
+.r-card { background: var(--surface); border-radius: 14px; padding: 14px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px; border-left: 5px solid var(--border);}
+.r-card.s-mastered { border-left-color: var(--secondary); }
+.r-card.s-struggled { border-left-color: var(--error); background: #FFFDFD;}
+.r-card.s-unseen { border-left-color: var(--muted); opacity: 0.8;}
+.r-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.r-hb { font-size: 1.8rem; font-family: 'Rubik', sans-serif; font-weight: 700; color: var(--ink); line-height: 1.1; display:flex; align-items:center; gap:8px; direction: rtl;}
+.r-listen { background: #DBEAFE; color: #1D4ED8; border: none; font-size: 1rem; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;}
+.r-en { font-size: 0.95rem; font-weight: 900; color: var(--ink); margin-bottom: 2px;}
+.r-tr { font-size: 0.85rem; font-weight: 800; color: var(--primary);}
+.r-syls { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; padding-top: 8px; border-top: 1px dashed var(--border); direction: rtl; }
+.r-syl { display: flex; align-items: center; gap: 6px; background: var(--bg); padding: 4px 8px; border-radius: 8px;}
+.r-s-hb { font-size: 1.2rem; font-family: 'Rubik', sans-serif; font-weight: 700; color: var(--ink); }
+.r-s-tr { font-size: 0.8rem; font-weight: 800; color: var(--muted); direction: ltr; unicode-bidi: isolate;}
+.empty-state { text-align: center; padding: 40px 20px; color: var(--muted); font-weight: 800; font-size: 0.95rem; }
+
+/* ── MODALS & TOASTS ── */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; }
+.overlay.active { opacity: 1; pointer-events: all; }
+.modal { background: var(--surface); width: 100%; max-width: 320px; padding: 20px; border-radius: 20px; text-align: center; transform: translateY(20px); transition: transform 0.3s ease; box-shadow: var(--shadow-lg); }
+.overlay.active .modal { transform: translateY(0); }
+.modal h3 { font-size: 1.2rem; color: var(--ink); font-weight: 900; margin-bottom: 8px; }
+.modal p { color: var(--muted); font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; line-height: 1.4; }
+.modal-actions { display: flex; gap: 10px; }
+.m-btn { flex: 1; padding: 12px; border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 800; cursor: pointer;}
+.m-btn.cancel { background: var(--bg); color: var(--ink); }
+.m-btn.danger { background: var(--error); color: white; box-shadow: 0 4px 0 #B91C1C; }
+
+#toast { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: white; padding: 10px 18px; border-radius: 50px; font-weight: 800; font-size: 0.9rem; opacity: 0; pointer-events: none; transition: 0.3s ease; z-index: 3000; box-shadow: var(--shadow-md); white-space: nowrap; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- 🕊️ LANDING PAGE -->
+<div id="landing-page">
+  <div class="landing-card">
+    <div class="l-icon">🕊️</div>
+    <div class="l-title"><span>עברית</span> Master</div>
+    <div class="l-desc">
+      Master reading & spelling Hebrew<br>
+      <span class="l-author">Designed by Noah</span>
+    </div>
+    
+   <div class="dev-note">
+      <span>👨‍💻 Note for Students:</span>
+      Hebrew is read <b>Right-to-Left (⬅️)</b>! Tap the Hebrew letters to spell out the syllables.<br><br>Pay close attention to the <b>💡 Yellow Hints</b> to learn which letters to use when they sound exactly the same!
+    </div>
+
+    <div class="l-stats">
+      <div class="l-stat-lbl">Perfect Words</div>
+      <div class="l-stat-val" id="l-mastered">0</div>
+      <div style="margin-top:8px;">
+        <span class="l-level" id="l-level">Level 1: Oleh Chadash</span>
+      </div>
+    </div>
+    
+    <button class="btn-start" onclick="startApp()">Start Learning →</button>
+    <button class="btn-reset" onclick="requestReset()">Clear All Progress</button>
+  </div>
+</div>
+
+<!-- 🕊️ MAIN APP -->
+<div id="main-app">
+  <header>
+    <div class="logo">
+      <div>🕊️ <span>עברית</span> Hebrew Master</div>
+      <div class="logo-sub">by Noah</div>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-btn active" onclick="tab('game')">Play & Learn</button>
+      <button class="nav-btn" onclick="tab('review')">Review Words</button>
+    </div>
+  </header>
+
+  <!-- PLAY PANEL -->
+  <div id="game-panel" class="panel active">
+    <div class="cat-scroll" id="game-cats"></div>
+
+    <div id="play-area">
+      <div class="word-card">
+        <div class="word-prog" id="prog-val">1/10</div>
+        
+        <!-- 👇 NEW: MASSIVE ORIGINAL HEBREW WORD DISPLAYED HERE 👇 -->
+        <div class="word-target-hb" id="c-hb"></div>
+        
+        <div class="word-eng" id="c-eng"></div>
+        <div class="word-hint" id="c-hint"></div>
+        <div id="c-note"></div>
+        <div><button class="listen-btn" onclick="playCurrentWordTTS()">🔊 Listen</button></div>
+        <div class="slots" id="slots"></div>
+      </div>
+
+      <div id="bank-container">
+        <div class="bank-head">
+          <span>Build words Right-to-Left ⬅️</span>
+          <button class="hint-btn" onclick="hint()">💡 Highlight Tile</button>
+        </div>
+        <div class="bank" id="bank"></div>
+      </div>
+      
+      <button class="btn-next" id="btn-next" onclick="nextWord()">Great! Next Word →</button>
+    </div>
+
+    <div class="finish" id="finish">
+      <div style="font-size: 3.5rem; margin-bottom: 12px;">🏆</div>
+      <h1>Category Complete!</h1>
+      <button class="btn-next" style="display:block; margin-bottom:12px; background:var(--primary); box-shadow:0 6px 0 #1D4ED8;" onclick="nextCat()">Try Next Category →</button>
+      <button class="btn-next" style="display:block; background:var(--bg); color:var(--ink); border:2px solid var(--border); box-shadow:none;" onclick="replay()">↻ Play Again</button>
+    </div>
+  </div>
+
+  <!-- REVIEW PANEL -->
+  <div id="review-panel" class="panel">
+    <div class="rev-filter-bar">
+      <button class="r-tab active-mastered" id="tab-mastered" onclick="setRevFilter('mastered')"><span>🏆</span> Mastered</button>
+      <button class="r-tab" id="tab-struggled" onclick="setRevFilter('struggled')"><span>🏋️</span> Practice</button>
+      <button class="r-tab" id="tab-unseen" onclick="setRevFilter('unseen')"><span>🔒</span> Unseen</button>
+    </div>
+    <div id="rev-list-container">
+      <div class="r-list" id="rev-list"></div>
+     <div style="font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 30px; font-weight: 700;">
+        App crafted with ❤️ by Noah
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast">Message</div>
+
+<div id="confirm-modal" class="overlay">
+  <div class="modal">
+    <h3>Are you sure?</h3>
+    <p>This permanently erases your learned words and resets your level.</p>
+    <div class="modal-actions">
+      <button class="m-btn cancel" onclick="closeReset()">Cancel</button>
+      <button class="m-btn danger" onclick="executeReset()">Reset App</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════
+//  UI HELPERS
+// ════════════════════════════════════════════════════════
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+function requestReset() { AudioSys.playSFX('click'); document.getElementById('confirm-modal').classList.add('active'); }
+function closeReset() { AudioSys.playSFX('click'); document.getElementById('confirm-modal').classList.remove('active'); }
+function executeReset() { userData = { mastered: [], struggled: [] }; saveStorage(); closeReset(); showToast("✅ Progress successfully cleared!");
+  setTimeout(() => window.location.reload(), 1500); 
+}
+
+function enableDragScroll(slider) {
+  let isDown = false, startX, scrollLeft;
+  slider.addEventListener('mousedown', (e) => { isDown = true; slider.style.cursor = 'grabbing'; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
+  slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+  slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
+  slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; slider.scrollLeft = scrollLeft - ((x - startX) * 2); });
+}
+
+// ════════════════════════════════════════════════════════
+//  TEXT-TO-SPEECH (CLOUD HEBREW)
+// ════════════════════════════════════════════════════════
+const TTS = {
+    speak: function(text) {
+        if (!text) return;
+        try {
+            const encodedText = encodeURIComponent(text);
+            const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=he&q=${encodedText}`;
+            const audio = new Audio(audioUrl);
+            audio.playbackRate = 0.85; 
+            audio.play().catch(e => showToast("Check internet connection for audio."));
+        } catch (error) {
+            showToast("Speech generation failed.");
+        }
+    }
+};
+function playCurrentWordTTS() { AudioSys.playSFX('click'); TTS.speak(currentQueue[wIdx].hebrew); }
+
+// ════════════════════════════════════════════════════════
+//  AUDIO ENGINE
+// ════════════════════════════════════════════════════════
+const AudioSys = {
+    ctx: null, unlocked: false,
+    init: function() { window.AudioContext = window.AudioContext || window.webkitAudioContext; if (window.AudioContext) { this.ctx = new AudioContext(); } },
+    unlock: function() { if (this.unlocked) return; if (this.ctx && this.ctx.state === 'suspended') { this.ctx.resume(); } this.unlocked = true; },
+    playSFX: function(type) {
+        if (!this.ctx) return; this.unlock();
+        const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+        osc.connect(gain); gain.connect(this.ctx.destination);
+        const now = this.ctx.currentTime;
+        
+        if (type === 'click') {
+            osc.type = 'sine'; osc.frequency.setValueAtTime(600, now); osc.frequency.exponentialRampToValueAtTime(300, now + 0.1);
+            gain.gain.setValueAtTime(0.1, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+            osc.start(now); osc.stop(now + 0.1);
+        } else if (type === 'pop') {
+            osc.type = 'sine'; osc.frequency.setValueAtTime(800, now); osc.frequency.exponentialRampToValueAtTime(1200, now + 0.1);
+            gain.gain.setValueAtTime(0.2, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+            osc.start(now); osc.stop(now + 0.1);
+        } else if (type === 'error') {
+            osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now); osc.frequency.exponentialRampToValueAtTime(100, now + 0.2);
+            gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+            osc.start(now); osc.stop(now + 0.2);
+        } else if (type === 'success') {
+            osc.type = 'sine'; osc.frequency.setValueAtTime(400, now); osc.frequency.setValueAtTime(600, now + 0.1); osc.frequency.setValueAtTime(800, now + 0.2);
+            gain.gain.setValueAtTime(0.1, now); gain.gain.linearRampToValueAtTime(0, now + 0.3);
+            osc.start(now); osc.stop(now + 0.3);
+        }
+    }
+};
+AudioSys.init();
+document.addEventListener('pointerdown', () => AudioSys.unlock(), {once:true});
+
+// ════════════════════════════════════════════════════════
+//  HEBREW DATA FACTORY & GENTLE BEGINNER DATABASE
+// ════════════════════════════════════════════════════════
+const T = (hb, tr) => ({ hb: hb, tr: tr });
+const S = (tr, hb, ...t) => ({ tr: tr, hb: hb, tiles: t });
+const W = (eng, hbFull, trFull, note, ...s) => ({ eng: eng, hebrew: hbFull, translit: trFull, note: note, syllables: s });
+
+const DB = [
+{label: 'Day 1: Micro Words 👶', words: [
+  W('Yes', 'כן', 'Ken', 'Notice the long vertical line on the left? That is a "Final Nun" (ן). Hebrew letters change shape at the end of a word!', S('ke','כ',T('כ','k')), S('n','ן',T('ן','n'))),
+  W('No', 'לא', 'Lo', 'Uses Aleph (א) as a silent vowel carrier for the "O" sound.', S('lo','לא',T('ל','l'),T('א','o'))),
+  W('Who', 'מי', 'Mi', '', S('mi','מי',T('מ','m'),T('י','i'))),
+  W('What', 'מה', 'Ma', 'Words ending in an "A" sound very often end with a silent Hey (ה).', S('ma','מה',T('מ','m'),T('ה','a'))),
+  W('Sea', 'ים', 'Yam', 'Uses a "Final Mem" (ם) because it is the last letter.', S('ya','י',T('י','y')), S('m','ם',T('ם','m'))),
+  W('Fish', 'דג', 'Dag', '', S('da','ד',T('ד','d')), S('g','ג',T('ג','g'))),
+  W('Hand', 'יד', 'Yad', '', S('ya','י',T('י','y')), S('d','ד',T('ד','d')))
+]},
+
+{label: 'Day 2: Family 👨‍👩‍👧', words: [
+  W('Dad', 'אבא', 'Aba', 'Starts AND ends with Aleph (א) for the "A" sound. Ayin (ע) is not used here.', S('a','א',T('א','a')), S('ba','בא',T('ב','b'),T('א','a'))),
+  W('Mom', 'אמא', 'Ima', 'Also starts and ends with Aleph (א).', S('i','אי',T('א','i'),T('י','i')), S('ma','מא',T('מ','m'),T('א','a'))),
+  W('Son', 'בן', 'Ben', 'Uses a Final Nun (ן) at the end.', S('be','ב',T('ב','b')), S('n','ן',T('ן','n'))),
+  W('Daughter', 'בת', 'Bat', 'Uses Tav (ת) for the "T" sound, not Tet (ט).', S('bat','בת',T('ב','b'),T('ת','t'))),
+  W('Brother', 'אח', 'Ach', 'Uses Chet (ח) for the throat-clearing "Ch" sound.', S('a','א',T('א','a')), S('ch','ח',T('ח','ch'))),
+  W('Sister', 'אחות', 'Achot', 'Uses Chet (ח) and ends with Tav (ת) for "T".', S('a','א',T('א','a')), S('cho','חו',T('ח','ch'),T('ו','o')), S('t','ת',T('ת','t')))
+]},
+
+{label: 'Day 3: Easy Greetings 👋', words: [
+  W('Hello / Peace', 'שלום', 'Shalom', 'The classic! Built from Shin (ש), Lamed (ל), Vav (ו) for the "O" sound, and Final Mem (ם).', S('sha','ש',T('ש','sh')), S('lo','לו',T('ל','l'),T('ו','o')), S('m','ם',T('ם','m'))),
+  W('Thank you', 'תודה', 'Toda', 'Starts with Tav (ת). The "O" sound is made using Vav (ו).', S('to','תו',T('ת','t'),T('ו','o')), S('da','דה',T('ד','d'),T('ה','a'))),
+  W('Good', 'טוב', 'Tov', 'Uses Tet (ט) for "T", not Tav. The "V" sound is actually made by a Bet (ב)! This is a weird exception you must memorize.', S('tov','טוב',T('ט','t'),T('ו','o'),T('ב','v'))),
+  W('Bad', 'רע', 'Ra', 'The "A" sound here uses Ayin (ע), not Aleph (א)!', S('ra','רע',T('ר','r'),T('ע','a')))
+]},
+
+{label: 'Day 4: Core Basics 🍞', words: [
+  W('Water', 'מים', 'Mayim', 'Has two Mems! A regular Mem (מ) at the start, and a Final Mem (ם) at the end.', S('ma','מ',T('מ','m')), S('yim','ים',T('י','y'),T('ם','m'))),
+  W('Bread', 'לחם', 'Lechem', 'Uses Chet (ח) for the "Ch" sound. Ends with Final Mem (ם).', S('le','ל',T('ל','l')), S('chem','חם',T('ח','ch'),T('ם','m'))),
+  W('House / Home', 'בית', 'Bayit', 'Ends with Tav (ת) for "T".', S('ba','ב',T('ב','b')), S('yit','ית',T('י','y'),T('ת','t'))),
+  W('Dog', 'כלב', 'Kelev', 'Starts with Kaf (כ) for the "K" sound, not Kuf (ק).', S('ke','כ',T('כ','k')), S('lev','לב',T('ל','l'),T('ב','v')))
+]},
+
+{label: 'Tricky Spellings 🔤', words: [
+  W('Line / Voice', 'קול', 'Kol', 'Uses Kuf (ק) for the "K" sound.', S('ko','קו',T('ק','k'),T('ו','o')), S('l','ל',T('ל','l'))),
+  W('Everything / All', 'כל', 'Kol', 'Sounds EXACTLY like "Voice", but uses Kaf (כ) instead of Kuf (ק)!', S('ko','כ',T('כ','k')), S('l','ל',T('ל','l'))),
+  W('Tree / Wood', 'עץ', 'Etz', 'Uses Ayin (ע) for the vowel, and a Final Tzadi (ץ) at the end.', S('e','ע',T('ע','e')), S('tz','ץ',T('ץ','tz'))),
+  W('Time', 'זמן', 'Zman', 'Ends with a Final Nun (ן).', S('z','ז',T('ז','z')), S('ma','מ',T('מ','m')), S('n','ן',T('ן','n')))
+]},
+
+{label: 'Longer Words 🏃‍♂️', words: [
+  W('Please', 'בבקשה', 'Bevakasha', 'A long one! Note that both "B" and "V" use the exact same letter: Bet (ב).', S('be','ב',T('ב','b')), S('va','ב',T('ב','v')), S('ka','ק',T('ק','k')), S('sha','שה',T('ש','sh'),T('ה','a'))),
+  W('Excuse me / Sorry', 'סליחה', 'Slicha', 'Uses Samech (ס) for "S", and Chet (ח) for "Ch".', S('s','ס',T('ס','s')), S('li','לי',T('ל','l'),T('י','i')), S('cha','חה',T('ח','ch'),T('ה','a'))),
+  W('See you later', 'להתראות', 'Lehitraot', 'The boss level word! Break it down slowly, syllable by syllable.', S('le','ל',T('ל','l')), S('hit','הת',T('ה','h'),T('ת','t')), S('ra','רא',T('ר','r'),T('א','a')), S('ot','ות',T('ו','o'),T('ת','t')))
+]}
+];
+
+// Complete Hebrew Alphabet with Transliteration hints
+const hebrewPool = [
+  T('א','a/e/o'), T('ב','b/v'), T('ג','g'), T('ד','d'), T('ה','h/a'),
+  T('ו','o/u/v'), T('ז','z'), T('ח','ch'), T('ט','t'), T('י','y/i'),
+  T('כ','k/ch'), T('ך','k/ch'), T('ל','l'), T('מ','m'), T('ם','m'),
+  T('נ','n'), T('ן','n'), T('ס','s'), T('ע','a/e'), T('פ','p/f'),
+  T('ף','f'), T('צ','tz'), T('ץ','tz'), T('ק','k'), T('ר','r'),
+  T('ש','sh/s'), T('ת','t')
+];
+
+// ════════════════════════════════════════════════════════
+//  GAME ENGINE & USER STATE
+// ════════════════════════════════════════════════════════
+let cIdx = 0, wIdx = 0, currentQueue = [], slots = [], wordDone = false, flawlessWord = true;
+let userData = { mastered: [], struggled: [] }; 
+let currentRevFilter = 'mastered';
+
+function loadStorage() {
+  const saved = localStorage.getItem('hebrewMastery_V4');
+  if(saved) userData = JSON.parse(saved);
+  updateStats();
+}
+function saveStorage() {
+  localStorage.setItem('hebrewMastery_V4', JSON.stringify(userData));
+  updateStats();
+}
+function updateStats() {
+  const count = userData.mastered.length;
+  document.getElementById('l-mastered').textContent = count;
+  
+  const level = Math.floor(count / 15) + 1;
+  let title = "Oleh Chadash 🐣"; 
+  if(count >= 10)  title = "Ulpan Student 📚";
+  if(count >= 25)  title = "Tzabar 🌵"; 
+  if(count >= 40)  title = "Hebrew Master 🕍";
+  
+  document.getElementById('l-level').textContent = `Level ${level}: ${title}`;
+}
+
+function startApp() {
+  AudioSys.unlock(); 
+  AudioSys.playSFX('click'); 
+  document.getElementById('landing-page').style.visibility = 'hidden';
+  document.getElementById('landing-page').style.opacity = '0';
+  document.getElementById('main-app').style.display = 'flex';
+  init();
+}
+
+function init() {
+  const gCat = document.getElementById('game-cats'); gCat.innerHTML = '';
+  DB.forEach((cat, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-pill' + (i===0 ? ' active':''); btn.textContent = cat.label;
+    btn.onclick = (e) => {
+      AudioSys.playSFX('click');
+      document.querySelectorAll('#game-cats .cat-pill').forEach(b=>b.classList.remove('active'));
+      e.target.classList.add('active'); cIdx = i; startCategory();
+    };
+    gCat.appendChild(btn);
+  });
+  enableDragScroll(gCat); startCategory();
+}
+
+function tab(t) {
+  AudioSys.playSFX('click');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(t)));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(`${t}-panel`).classList.add('active');
+  if(t === 'review') setRevFilter(currentRevFilter);
+}
+
+function startCategory() { currentQueue = [...DB[cIdx].words]; wIdx = 0; loadWord(); }
+
+function loadWord() {
+  document.getElementById('prog-val').textContent = `${wIdx + 1} / ${currentQueue.length}`;
+  if(wIdx >= currentQueue.length) {
+    document.getElementById('play-area').style.display = 'none';
+    document.getElementById('finish').style.display = 'flex';
+    document.getElementById('finish').style.flexDirection = 'column';
+    document.getElementById('finish').style.justifyContent = 'center';
+    return;
+  }
+  document.getElementById('play-area').style.display = 'flex';
+  document.getElementById('finish').style.display = 'none';
+  document.getElementById('bank-container').style.display = 'flex';
+  document.getElementById('btn-next').style.display = 'none';
+  wordDone = false; flawlessWord = true; 
+  
+  const w = currentQueue[wIdx];
+  
+  // 👇 INJECT TARGET HEBREW WORD HERE 👇
+  document.getElementById('c-hb').textContent = w.hebrew;
+  
+  document.getElementById('c-eng').textContent = w.eng;
+  document.getElementById('c-hint').textContent = w.translit;
+  
+  const n = document.getElementById('c-note');
+  n.innerHTML = w.note ? `<div class="hb-note">💡 ${w.note}</div>` : '';
+
+  slots = w.syllables.map(s => ({ tr: s.tr, hb: s.hb, targets: s.tiles.map(t=>t.hb), filled: [], done: false }));
+  renderSlots(); renderBank(w); setSlot(0); 
+}
+
+function renderSlots() {
+  const box = document.getElementById('slots'); box.innerHTML = '';
+  slots.forEach((s, i) => {
+    const el = document.createElement('div'); el.className = 'slot'; el.id = `s-${i}`;
+    const fillTxt = s.filled.map(t=>t.hb).join('');
+    const emptyTxt = Array(s.targets.length - s.filled.length).fill('_').join('');
+    
+    el.innerHTML = `<div class="s-tr">${s.tr}</div><div class="s-hb">${fillTxt}<span>${emptyTxt}</span></div>`;
+    el.onclick = () => { clearSlot(i); };
+    box.appendChild(el);
+  });
+}
+
+function setSlot(idx) {
+  document.querySelectorAll('.slot').forEach(e => { e.classList.remove('active'); e.style.opacity = '0.5'; });
+  const cur = document.getElementById(`s-${idx}`);
+  if(cur && !slots[idx].done) { cur.classList.add('active'); cur.style.opacity = '1'; }
+  else document.querySelectorAll('.slot').forEach(e => e.style.opacity = '1');
+}
+
+function clearSlot(idx) {
+  if(wordDone || slots[idx].filled.length === 0) return;
+  AudioSys.playSFX('click');
+  slots[idx].filled.forEach(t => document.getElementById(`t-${t.id}`).classList.remove('used'));
+  slots[idx].filled = []; slots[idx].done = false;
+  document.getElementById(`s-${idx}`).classList.remove('done');
+  renderSlots(); setSlot(idx);
+}
+
+function renderBank(word) {
+  const bank = document.getElementById('bank'); bank.innerHTML = '';
+  let req = []; word.syllables.forEach(s => s.tiles.forEach(t => req.push({...t})));
+  const reqSet = new Set(req.map(t=>t.hb));
+  const dist = shuffle(hebrewPool.filter(t=>!reqSet.has(t.hb))).slice(0, 4);
+  
+  shuffle([...req, ...dist]).forEach((t, i) => {
+    const el = document.createElement('div'); el.className = 'tile'; el.id = `t-${i}`;
+    el.innerHTML = `<div class="t-hb">${t.hb}</div><div class="t-tr">${t.tr}</div>`;
+    el.onclick = () => tapTile(t, i, el); bank.appendChild(el);
+  });
+}
+
+function tapTile(tile, id, el) {
+  if(wordDone || el.classList.contains('used')) return;
+  let sIdx = slots.findIndex(s => !s.done); if(sIdx === -1) return;
+  setSlot(sIdx); const s = slots[sIdx]; const nextRequired = s.targets[s.filled.length];
+  
+  if(tile.hb === nextRequired) {
+    AudioSys.playSFX('pop');
+    s.filled.push({hb: tile.hb, id: id}); el.classList.add('used');
+    if(s.filled.length === s.targets.length) s.done = true;
+    renderSlots();
+    if(s.done) {
+      document.getElementById(`s-${sIdx}`).classList.add('done'); document.getElementById(`s-${sIdx}`).classList.remove('active');
+      let nIdx = slots.findIndex(x => !x.done);
+      if(nIdx !== -1) setSlot(nIdx); else finishWord();
+    }
+  } else {
+    AudioSys.playSFX('error');
+    flawlessWord = false; 
+    const sEl = document.getElementById(`s-${sIdx}`); sEl.classList.remove('error'); void sEl.offsetWidth; sEl.classList.add('error');
+  }
+}
+
+function finishWord() {
+  wordDone = true; const hebrewStr = currentQueue[wIdx].hebrew;
+  
+  userData.mastered = userData.mastered.filter(w => w !== hebrewStr);
+  userData.struggled = userData.struggled.filter(w => w !== hebrewStr);
+  if(flawlessWord) { userData.mastered.push(hebrewStr); } else { userData.struggled.push(hebrewStr); }
+  saveStorage(); 
+
+  document.querySelectorAll('.slot').forEach(e => e.style.opacity = '1');
+  document.getElementById('bank-container').style.display = 'none';
+  document.getElementById('btn-next').style.display = 'block';
+  
+  AudioSys.playSFX('success');
+  setTimeout(() => TTS.speak(hebrewStr), 300);
+}
+
+function hint() {
+  if(wordDone) return; flawlessWord = false; AudioSys.playSFX('error');
+  const sIdx = slots.findIndex(s => !s.done); if(sIdx === -1) return;
+  const next = slots[sIdx].targets[slots[sIdx].filled.length];
+  for(let el of document.querySelectorAll('.tile:not(.used)')) {
+    if(el.querySelector('.t-hb').textContent === next) {
+      el.style.backgroundColor = '#FEF3C7'; el.style.borderColor = '#F59E0B';
+      setTimeout(() => { el.style.backgroundColor=''; el.style.borderColor=''; }, 1500); break;
+    }
+  }
+}
+
+function nextWord() { AudioSys.playSFX('click'); wIdx++; loadWord(); }
+function replay() { AudioSys.playSFX('click'); startCategory(); }
+function nextCat() { AudioSys.playSFX('click'); document.querySelectorAll('#game-cats .cat-pill')[(cIdx+1)%DB.length]?.click(); }
+
+// ════════════════════════════════════════════════════════
+//  REVIEW ENGINE
+// ════════════════════════════════════════════════════════
+let currentRevList = [];
+let currentRevIndex = 0;
+const CHUNK_SIZE = 30;
+
+function setRevFilter(filter) {
+  AudioSys.playSFX('click');
+  currentRevFilter = filter;
+  document.querySelectorAll('.r-tab').forEach(t => t.className = 'r-tab');
+  document.getElementById(`tab-${filter}`).classList.add(`active-${filter}`);
+  
+  const box = document.getElementById('rev-list');
+  box.innerHTML = '';
+  currentRevList = [];
+  currentRevIndex = 0;
+  
+  DB.forEach(cat => {
+    cat.words.forEach(w => {
+      const isMastered = userData.mastered.includes(w.hebrew);
+      const isStruggled = userData.struggled.includes(w.hebrew);
+      const isUnseen = !isMastered && !isStruggled;
+      
+      if(filter === 'mastered' && isMastered) currentRevList.push({w, filter});
+      if(filter === 'struggled' && isStruggled) currentRevList.push({w, filter});
+      if(filter === 'unseen' && isUnseen) currentRevList.push({w, filter});
+    });
+  });
+
+  if(currentRevList.length === 0) {
+    let msg = filter === 'mastered' ? "You haven't mastered any words yet! Keep playing." : 
+              filter === 'struggled' ? "Great job! You don't have any words that need practice right now." : 
+              "You've played every word in the game! Amazing!";
+    box.innerHTML = `<div class="empty-state">${msg}</div>`;
+    return;
+  }
+
+  renderRevChunk();
+}
+
+function renderRevChunk() {
+  const box = document.getElementById('rev-list');
+  let htmlStr = '';
+  const end = Math.min(currentRevIndex + CHUNK_SIZE, currentRevList.length);
+  
+  for(let i = currentRevIndex; i < end; i++) {
+    const item = currentRevList[i];
+    const w = item.w;
+    const filter = item.filter;
+    
+    const sHtml = w.syllables.map(s => `<div class="r-syl"><span class="r-s-tr">${s.tr}</span> <span class="r-s-hb" style="font-size:1.3rem;">${s.hb}</span></div>`).join('');
+    
+    const nHtml = w.note ? `<div style="font-size:0.8rem; color:#D97706; background:#FEF3C7; padding:4px 8px; border-radius:6px; margin-top:8px; display:inline-block;">💡 ${w.note}</div>` : '';
+
+    htmlStr += `
+      <div class="r-card s-${filter}">
+        <div class="r-top">
+          <div>
+            <div class="r-en">${w.eng}</div>
+            <div class="r-tr">${w.translit}</div>
+          </div>
+          <div class="r-hb">${w.hebrew} <button class="r-listen" onclick="TTS.speak('${w.hebrew}')">🔊</button></div>
+        </div>
+        ${nHtml}
+        <div class="r-syls" style="direction:ltr;">${sHtml}</div>
+      </div>`;
+  }
+  
+  const oldBtn = document.getElementById('load-more-btn');
+  if(oldBtn) oldBtn.remove();
+  box.innerHTML += htmlStr;
+  currentRevIndex = end;
+  
+  if(currentRevIndex < currentRevList.length) {
+    const remain = currentRevList.length - currentRevIndex;
+    box.innerHTML += `
+      <button id="load-more-btn" onclick="renderRevChunk()" 
+        style="width:100%; padding:14px; margin-top:12px; border:2px dashed var(--border); background:transparent; color:var(--muted); font-weight:800; border-radius:16px; cursor:pointer; font-size:1rem; transition: 0.2s;">
+        👇 Load More (${remain} remaining)
+      </button>`;
+  }
+}
+function shuffle(a){ for(let i=a.length-1; i>0; i--){ const j=~~(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+loadStorage();
+
+</script>
+</body>
+</html>
