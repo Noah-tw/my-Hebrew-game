@@ -71,8 +71,10 @@ header { width: 100%; padding: 10px 16px 6px; background: var(--surface); z-inde
 .cat-pill.active { background: var(--ink); color: white; }
 
 /* ── GAME PLAY AREA ── */
-#play-area { flex: 1; display: flex; flex-direction: column; padding: 0 16px 8px; justify-content: flex-start; }
+#play-area { flex: 1; display: flex; flex-direction: column; padding: 0 16px calc(24px + env(safe-area-inset-bottom)); justify-content: flex-start; overflow-y: auto; }
 .word-card { background: var(--surface); border-radius: var(--radius); padding: 12px; text-align: center; margin-bottom: 8px; box-shadow: var(--shadow-md); position: relative; border-top: 5px solid var(--primary); flex-shrink: 0; }
+
+
 .word-prog { position: absolute; top: 10px; right: 10px; font-size: 0.75rem; font-weight: 800; color: var(--muted); background: #F1F5F9; padding: 2px 8px; border-radius: 50px;}
 
 /* 👇 NEW: TARGET HEBREW WORD DISPLAY */
@@ -123,18 +125,19 @@ header { width: 100%; padding: 10px 16px 6px; background: var(--surface); z-inde
 .btn-skip:active { background: var(--border); transform: scale(0.98); }
 
 
-.finish { text-align: center; padding: 40px 20px; display: none; flex: 1; }
+.finish { text-align: center; padding: 40px 20px calc(40px + env(safe-area-inset-bottom)); display: none; flex: 1; overflow-y: auto; }
 .finish h1 { font-size: 2rem; color: var(--ink); margin: 16px 0; font-weight: 900;}
 
 /* ── REVIEW SECTION ── */
 .rev-filter-bar { display: flex; gap: 8px; padding: 10px 16px; background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.04); z-index: 10; flex-shrink: 0;}
 .r-tab { flex: 1; padding: 8px 0; border: none; border-radius: 10px; font-size: 0.8rem; font-weight: 900; cursor: pointer; transition: 0.2s; background: var(--bg); color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 4px;}
 .r-tab span { font-size: 1.1rem; }
+
 .r-tab.active-mastered { background: #D1FAE5; color: #065F46; }
 .r-tab.active-struggled { background: #FEE2E2; color: #991B1B; }
 .r-tab.active-unseen { background: #F1F5F9; color: var(--ink); }
 
-#rev-list-container { flex: 1; overflow-y: auto; padding: 12px; background: var(--bg); }
+#rev-list-container { flex: 1; overflow-y: auto; padding: 12px 12px calc(24px + env(safe-area-inset-bottom)); background: var(--bg); }
 .r-list { display: flex; flex-direction: column; gap: 10px; }
 .r-card { background: var(--surface); border-radius: 14px; padding: 14px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px; border-left: 5px solid var(--border);}
 .r-card.s-mastered { border-left-color: var(--secondary); }
