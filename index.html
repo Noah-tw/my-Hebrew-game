@@ -506,9 +506,12 @@ const DB = [
 
   // From Part 87: Extended Family & People 👨‍👩‍👦
   W('Grandpa', 'סבא', 'Saba', 'Starts with Samech (ס).', S('sa','ס',T('ס','s')), S('ba','בא',T('ב','b'),T('א','a'))),
-  W('Grandma', 'סבתא', 'Savta', 'Uses Samech (ס) and Tav (ת).', S('sav','סב',T('ס','s'),T('ב','v')), S('ta','תא',T('ת','t'),T('א','a'))),
-  W('Uncle', 'דוד', 'Dod', 'Just Dalet (ד) and Vav (ו).', S('dod','דוד',T('ד','d'),T('ו','o'),T('ד','d'))),
+
+
+W('Grandma', 'סבתא', 'Savta', 'Uses Samech (ס) and Tav (ת).', S('sav','סב',T('ס','s'),T('ב','v')), S('ta','תא',T('ת','t'),T('א','a'))),
+  W('Uncle', 'דוד', 'Dod', 'Uses two Dalets (ד) with a Vav (ו) in the middle.', S('dod','דוד',T('ד','d'),T('ו','o'),T('ד','d'))),
   W('Aunt', 'דודה', 'Doda', 'Ends with Hey (ה).', S('do','דו',T('ד','d'),T('ו','o')), S('da','דה',T('ד','d'),T('ה','a'))),
+
   W('Baby', 'תינוק', 'Tinok', 'Starts with Tav (ת) and ends with Kuf (ק).', S('ti','תי',T('ת','t'),T('י','i')), S('nok','נוק',T('נ','n'),T('ו','o'),T('ק','k'))),
   W('Child / Boy', 'ילד', 'Yeled', 'Starts with Yod (י).', S('ye','י',T('י','y')), S('led','לד',T('ל','l'),T('ד','d'))),
   W('Girl', 'ילדה', 'Yalda', 'Child/Boy with a Hey (ה) at the end.', S('yal','יל',T('י','y'),T('ל','l')), S('da','דה',T('ד','d'),T('ה','a'))),
@@ -668,9 +671,12 @@ const DB = [
   // From Part 97: Morning Routine 🌅
   W('To wake up', 'להתעורר', 'Lehit\'orer', 'Starts with Lamed (ל) and uses Ayin (ע).', S('le','ל',T('ל','l')), S('hit','הת',T('ה','h'),T('ת','t')), S('o','עו',T('ע','o'),T('ו','o')), S('rer','רר',T('ר','r'),T('ר','r'))),
   W('To take a shower', 'להתקלח', 'Lehitkaleach', 'Uses Kuf (ק) and ends with Chet (ח).', S('le','ל',T('ל','l')), S('hit','הת',T('ה','h'),T('ת','t')), S('ka','ק',T('ק','k')), S('le','ל',T('ל','l')), S('ach','ח',T('ח','ach'))),
-  W('To dress oneself', 'להתלבש', 'Lehitlabesh', 'Reflexive verb for putting on clothes.', S('le','ל',T('ל','l')), S('hit','הת',T('ה','h'),T('ת','t')), S('la','ל',T('ל','l')), S('besh','בש',T('ב','b'),T('ש','sh'))),
-  W('To brush (teeth)', 'לצחצח', 'Letsachtseach', 'A fun word! Uses Tzadi (צ) and Chet (ח) twice.', S('le','ל',T('ל','l')), S('tsach','צח',T('צ','ts'),T('ח','ch')), S('tse','צ',T('צ','ts')), S('ach','ח',T('ח','ach'))),
+
+W('To dress oneself', 'להתלבש', 'Lehitlabesh', 'Reflexive verb for putting on clothes.', S('le','ל',T('ל','l')), S('hit','הת',T('ה','h'),T('ת','t')), S('la','ל',T('ל','l')), S('besh','בש',T('ב','b'),T('ש','sh'))),
+  W('To brush (teeth)', 'לצחצח', 'Letsachtseach', 'A fun word! Uses Tzadi (צ) twice and Chet (ח) twice.', S('le','ל',T('ל','l')), S('tsach','צח',T('צ','ts'),T('ח','ch')), S('tse','צ',T('צ','ts')), S('ach','ח',T('ח','ach'))),
   W('Brush', 'מברשת', 'Mivreshet', 'Toothbrush is Mivreshet Shinayim.', S('miv','מב',T('מ','m'),T('ב','v')), S('re','ר',T('ר','r')), S('shet','שת',T('ש','sh'),T('ת','t'))),
+
+
   W('Paste / Ointment', 'משחה', 'Mishcha', 'Toothpaste is Mishchat Shinayim.', S('mish','מש',T('מ','m'),T('ש','sh')), S('cha','חה',T('ח','ch'),T('ה','a'))),
   W('Clock / Watch', 'שעון', 'Sha\'on', 'Uses Ayin (ע) for the O sound.', S('sha','ש',T('ש','sh')), S('on','עון',T('ע','o'),T('ו','o'),T('ן','n'))),
   W('Perfume', 'בושם', 'Bosem', 'Starts with Bet (ב) and uses Shin (ש).', S('bo','בו',T('ב','b'),T('ו','o')), S('sem','שם',T('ש','s'),T('ם','m'))),
@@ -885,8 +891,10 @@ const DB = [
   W('Water', 'מים', 'Mayim', 'Has two Mems! A regular Mem (מ) and a Final Mem (ם).', S('ma','מ',T('מ','m')), S('yim','ים',T('י','y'),T('ם','m'))),
   W('Bread', 'לחם', 'Lechem', 'Uses Chet (ח). Ends with Final Mem (ם).', S('le','ל',T('ל','l')), S('chem','חם',T('ח','ch'),T('ם','m'))),
   W('Milk', 'חלב', 'Chalav', 'Starts with Chet (ח), and the "V" sound is made by a Bet (ב).', S('cha','ח',T('ח','ch')), S('lav','לב',T('ל','l'),T('ב','v'))),
-  W('Without sugar', 'בלי סוכר', 'Bli sukar', 'Essential for ordering coffee in Israel!', S('bli','בלי',T('ב','b'),T('ל','l'),T('י','i')), S('su','סו',T('ס','s'),T('ו','u')), S('kar','כר',T('כ','k'),T('ר','r'))),
-  W('Check / Bill', 'חשבון', 'Cheshbon', 'Used when asking for the bill at a restaurant.', S('chesh','חש',T('ח','ch'),T('ש','sh')), S('bon','בון',T('ב','b'),T('ו','o'),T('ן','n'))),
+
+
+W('Without sugar', 'בלי סוכר', 'Bli sukar', 'Essential for ordering coffee in Israel!', S('bli','בלי',T('ב','b'),T('ל','l'),T('י','i')), S('su','סו',T('ס','s'),T('ו','u')), S('kar','כר',T('כ','k'),T('ר','r'))),
+  W('Check / Bill', 'חשבון', 'Cheshbon', 'Used for a restaurant bill, but also means "Account" (Bank/Instagram).', S('chesh','חש',T('ח','ch'),T('ש','sh')), S('bon','בון',T('ב','b'),T('ו','o'),T('ן','n'))),
   W('Menu', 'תפריט', 'Tafrit', 'Starts with Tav (ת).', S('taf','תפ',T('ת','t'),T('פ','f')), S('rit','ריט',T('ר','r'),T('י','i'),T('ט','t'))),
   W('Delicious', 'טעים', 'Taim', 'Uses Tet (ט) and Ayin (ע).', S('ta','ט',T('ט','t')), S('im','עים',T('ע','i'),T('י','i'),T('ם','m'))),
   W('Meat', 'בשר', 'Basar', 'The "S" sound here is actually a Shin (ש).', S('ba','ב',T('ב','b')), S('sar','שר',T('ש','s'),T('ר','r'))),
@@ -2400,14 +2408,22 @@ W('Busy / Crowded', 'עמוס', 'Amus', 'The bus or your schedule is Amus.', S('
   W('I have a question', 'יש לי שאלה', 'Yesh li she\'ela', 'When you need to ask something.', S('yesh','יש',T('י','y'),T('ש','sh')), S('li','לי',T('ל','l'),T('י','i')), S('she','ש',T('ש','sh')), S('e','א',T('א','e')), S('la','לה',T('ל','l'),T('ה','a'))),
   W('I like this (m)', 'אוהב את זה', 'Ohev et ze', 'Simple preference.', S('o','או',T('א','o'),T('ו','o')), S('hev','הב',T('ה','h'),T('ב','v')), S('et','את',T('א','e'),T('ת','t')), S('ze','זה',T('ז','z'),T('ה','e'))),
   W('Tell me (to f)', 'תגידי לי', 'Tagidi li', '"Tell me, what do you think?"', S('ta','ת',T('ת','t')), S('gi','גי',T('ג','g'),T('י','i')), S('di','די',T('ד','d'),T('י','i')), S('li','לי',T('ל','l'),T('י','i'))),
-  W('No choice', 'אין ברירה', 'Ein brera', 'A very Israeli way to say "It is what it is".', S('ein','אין',T('א','e'),T('י','i'),T('ן','n')), S('bre','ברי',T('ב','b'),T('ר','r'),T('י','e')), S('ra','רה',T('ר','r'),T('ה','a'))),
-  W('Just kidding', 'סתם', 'Stam', 'Can also mean "For no reason".', S('s','ס',T('ס','s')), S('tam','תם',T('ת','t'),T('ם','m'))),
+
+
+W('No choice', 'אין ברירה', 'Ein brera', 'A very Israeli way to say "It is what it is".', S('ein','אין',T('א','e'),T('י','i'),T('ן','n')), S('bre','ברי',T('ב','b'),T('ר','r'),T('י','e')), S('ra','רה',T('ר','r'),T('ה','a'))),
+  W('Just kidding', 'סתם', 'Stam', 'Can also mean "For no reason" or "Ordinary/Average".', S('s','ס',T('ס','s')), S('tam','תם',T('ת','t'),T('ם','m'))),
 
   // From Part 86: Conversational Filler & Flow 💬
+
+
   W('Absolutely', 'לגמרי', 'Legamri', 'A highly native way to say "Totally agree".', S('le','ל',T('ל','l')), S('gam','גמ',T('ג','g'),T('מ','m')), S('ri','רי',T('ר','r'),T('י','i'))),
-  W('Me too', 'גם אני', 'Gam ani', 'Simple and necessary.', S('gam','גם',T('ג','g'),T('ם','m')), S('a','א',T('א','a')), S('ni','ני',T('נ','n'),T('י','i'))),
-  W('It depends', 'תלוי', 'Talui', '"Are we going to the beach?" "It depends."', S('ta','ת',T('ת','t')), S('lui','לוי',T('ל','l'),T('ו','u'),T('י','i'))),
+
+
+W('Me too', 'גם אני', 'Gam ani', 'Simple and necessary.', S('gam','גם',T('ג','g'),T('ם','m')), S('a','א',T('א','a')), S('ni','ני',T('נ','n'),T('י','i'))),
+  W('It depends', 'תלוי', 'Talui', 'Usually followed by the prefix Bet (ב). Example: "Talui be-mezeg avir" (Depends on the weather).', S('ta','ת',T('ת','t')), S('lui','לוי',T('ל','l'),T('ו','u'),T('י','i'))),
   W('By the way', 'דרך אגב', 'Derech agav', 'To change the subject.', S('de','ד',T('ד','d')), S('rech','רך',T('ר','r'),T('ך','ch')), S('a','א',T('א','a')), S('gav','גב',T('ג','g'),T('ב','v'))),
+
+
   W('Honestly (Slang)', 'דוגרי', 'Dugri', 'Arabic slang used for "Straight up / Let\'s be real".', S('dug','דוג',T('ד','d'),T('ו','u'),T('ג','g')), S('ri','רי',T('ר','r'),T('י','i'))),
   W('I have no idea', 'אין לי מושג', 'Ein li musag', 'Better than just saying "I don\'t know".', S('ein','אין',T('א','e'),T('י','i'),T('ן','n')), S('li','לי',T('ל','l'),T('י','i')), S('mu','מו',T('מ','m'),T('ו','u')), S('sag','שג',T('ש','s'),T('ג','g'))),
   W('Good point', 'נקודה טובה', 'Nekuda tova', 'When someone makes a strong argument.', S('ne','נ',T('נ','n')), S('ku','קו',T('ק','k'),T('ו','u')), S('da','דה',T('ד','d'),T('ה','a')), S('to','טו',T('ט','t'),T('ו','o')), S('va','בה',T('ב','v'),T('ה','a'))),
